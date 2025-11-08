@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
+// Removed next/font/google imports for non-Google fonts (Geist).
+// We'll fall back to CSS variables defined in `styles/globals.css`.
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { V0Provider } from "@/lib/context"
@@ -8,22 +9,7 @@ import dynamic from "next/dynamic"
 
 const V0Setup = dynamic(() => import("@/components/v0-setup"))
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-})
+// Font variables are provided via CSS fallbacks in `styles/globals.css`.
 
 const isV0 = process.env["VERCEL_URL"]?.includes("vusercontent.net") ?? false
 
@@ -44,7 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(geistSans.variable, geistMono.variable, instrumentSerif.variable)}>
+      {/* body uses CSS variable fallbacks for fonts (see styles/globals.css) */}
+      <body className={cn()}>
         <V0Provider isV0={isV0}>
           {children}
           {isV0 && <V0Setup />}

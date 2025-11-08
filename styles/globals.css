@@ -10,6 +10,13 @@
 
 @layer base {
   :root {
+    /* Fallback font variables for environments where custom fonts (Geist/Instrument) are not available.
+       These provide safe defaults so CSS variables referenced elsewhere won't be empty and
+       prevent `next/font` runtime errors when the specific font loaders are not used. */
+    --font-geist-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-geist-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    --font-instrument-serif: Georgia, "Times New Roman", Times, serif;
+
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
     --background: 0 0% 100%;
